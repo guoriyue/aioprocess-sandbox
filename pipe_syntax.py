@@ -2,9 +2,12 @@ import asyncio
 import aioprocessing
 async def child_recv():
     msg = await child_pipe.coro_recv()
-    print(msg)
+    return msg
     
 parent_pipe, child_pipe = aioprocessing.AioPipe()
 parent_pipe.send("Eat shit")
   
-asyncio.run(child_recv())
+msg = asyncio.run(child_recv())
+print(msg)
+
+msg = asyncio.run(child_recv())
